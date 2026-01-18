@@ -1,0 +1,243 @@
+# Finance-cv
+Moliya va buxgalteriya sohasidagi shaxsiy portfolio. Saytda jonli valyuta kurslari, kredit kalkulyatori va shaxsiy moliya hisoblagichi jamlangan. Qarshi DTU talabasi Isroilov Xumoyun tomonidan yaratilgan."
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Isroilov Xumoyun | Moliya Portfoliosi</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0f172a;
+            --secondary: #3b82f6;
+            --accent: #fbbf24;
+            --success: #10b981;
+            --danger: #ef4444;
+            --bg: #f8fafc;
+            --text: #1e293b;
+            --card-bg: #ffffff;
+        }
+
+        .dark-theme {
+            --bg: #0f172a;
+            --primary: #f8fafc;
+            --secondary: #60a5fa;
+            --text: #cbd5e1;
+            --card-bg: #1e293b;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg);
+            margin: 0;
+            padding: 0;
+            color: var(--text);
+            transition: 0.3s;
+        }
+
+        .container { max-width: 850px; margin: 0 auto; padding: 20px; }
+
+        header {
+            background: linear-gradient(135deg, #0f172a 0%, #1e40af 100%);
+            color: white;
+            padding: 40px 30px;
+            border-radius: 20px;
+            text-align: center;
+            position: relative;
+            margin-bottom: 25px;
+        }
+
+        .theme-toggle {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid var(--accent);
+            color: var(--accent);
+            padding: 5px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+
+        section {
+            background: var(--card-bg);
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            margin-bottom: 20px;
+        }
+
+        h2 { color: var(--secondary); border-left: 5px solid var(--secondary); padding-left: 15px; font-size: 1.3rem; margin-top: 0; }
+
+        .currency-bar {
+            background: var(--primary);
+            color: white;
+            padding: 15px;
+            border-radius: 15px;
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .input-group { margin-bottom: 15px; }
+        input, select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            background: var(--card-bg);
+            color: var(--text);
+            box-sizing: border-box;
+        }
+
+        .btn {
+            width: 100%;
+            background: var(--secondary);
+            color: white;
+            border: none;
+            padding: 14px;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .analysis-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 15px;
+        }
+
+        .analysis-card {
+            background: rgba(59, 130, 246, 0.1);
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .history-list {
+            max-height: 150px;
+            overflow-y: auto;
+            margin-top: 15px;
+            padding: 0;
+            list-style: none;
+        }
+
+        .history-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <button class="theme-toggle" onclick="toggleTheme()">🌙 Rejim</button>
+        <h1>ISROILOV XUMOYUN</h1>
+        <p>Moliya va Bank Ishi Mutaxassisi | Qarshi DTU</p>
+        <p>📧 humoyunisroilov10@gmail.com</p>
+    </header>
+
+    <div class="currency-bar">
+        <div>USD: <span id="usd" style="color:var(--accent)">...</span></div>
+        <div>EUR: <span id="eur" style="color:var(--accent)">...</span></div>
+        <div>RUB: <span id="rub" style="color:var(--accent)">...</span></div>
+    </div>
+
+    <section>
+        <h2>📊 Shaxsiy Moliya Hisoblagichi</h2>
+        <div style="display: grid; grid-template-columns: 2fr 1fr 1fr auto; gap: 10px;">
+            <input type="text" id="accName" placeholder="Nima uchun?">
+            <input type="number" id="accSum" placeholder="Summa">
+            <select id="accType">
+                <option value="plus">+</option>
+                <option value="minus">-</option>
+            </select>
+            <button class="btn" onclick="addTransaction()" style="width: auto;">➕</button>
+        </div>
+        <ul id="accHistory" class="history-list"></ul>
+        <div style="text-align: right; margin-top: 10px; font-weight: bold;">
+            Balans: <span id="balanceText">0</span> so'm
+        </div>
+    </section>
+
+    <section>
+        <h2>🧮 Kredit Kalkulyatori</h2>
+        <div class="input-group"><input type="number" id="kSum" placeholder="Kredit summasi"></div>
+        <div class="input-group"><input type="number" id="kPercent" placeholder="Yillik foiz (%)"></div>
+        <div class="input-group"><input type="number" id="kMonth" placeholder="Muddati (oyda)"></div>
+        <button class="btn" onclick="calcKredit()">HISOBLASH</button>
+        <div id="kResult" style="margin-top:15px; display:none; color:var(--success); font-weight:bold;">
+            Oylik to'lov: <span id="kPayment">0</span> so'm
+        </div>
+    </section>
+
+    <section>
+        <h2>📈 Moliyaviy Tahlil</h2>
+        <div class="analysis-grid">
+            <div class="analysis-card"><small>Soliq optimizatsiyasi</small><br><b style="color:var(--success)">-10%</b></div>
+            <div class="analysis-card"><small>Xarajat nazorati</small><br><b style="color:var(--success)">100%</b></div>
+            <div class="analysis-card"><small>Debitorlik tahlili</small><br><b style="color:var(--secondary)">Active</b></div>
+        </div>
+    </section>
+
+    <section style="text-align: center;">
+        <h2>📩 Aloqa</h2>
+        <p>Ish takliflari va hamkorlik uchun:</p>
+        <a href="https://t.me/isroiloff_10" class="btn" style="text-decoration:none; display:inline-block; width:auto; padding: 10px 40px;">Telegram: @isroiloff_10</a>
+    </section>
+</div>
+
+<script>
+    // Theme Toggle
+    function toggleTheme() { document.body.classList.toggle('dark-theme'); }
+
+    // Currency API
+    async function updateRates() {
+        try {
+            const r = await fetch('https://nbu.uz/exchange-rates/json/');
+            const d = await r.json();
+            document.getElementById('usd').innerText = d.find(x => x.code === 'USD').nbu_buy_price;
+            document.getElementById('eur').innerText = d.find(x => x.code === 'EUR').nbu_buy_price;
+            document.getElementById('rub').innerText = d.find(x => x.code === 'RUB').nbu_buy_price;
+        } catch(e) {}
+    }
+    updateRates();
+
+    // Kredit Calculator
+    function calcKredit() {
+        let s = document.getElementById('kSum').value;
+        let f = document.getElementById('kPercent').value / 100 / 12;
+        let m = document.getElementById('kMonth').value;
+        let res = (s * f * Math.pow(1+f, m)) / (Math.pow(1+f, m) - 1);
+        if(!isNaN(res)) {
+            document.getElementById('kPayment').innerText = Math.round(res).toLocaleString();
+            document.getElementById('kResult').style.display = 'block';
+        }
+    }
+
+    // Mini Accounting
+    let balance = 0;
+    function addTransaction() {
+        const name = document.getElementById('accName').value;
+        const sum = parseFloat(document.getElementById('accSum').value);
+        const type = document.getElementById('accType').value;
+        if(name && sum) {
+            const current = type === 'plus' ? sum : -sum;
+            balance += current;
+            const li = document.createElement('li');
+            li.className = 'history-item';
+            li.innerHTML = `<span>${name}</span> <span style="color:${type === 'plus' ? 'var(--success)' : 'var(--danger)'}">${current.toLocaleString()}</span>`;
+            document.getElementById('accHistory').prepend(li);
+            document.getElementById('balanceText').innerText = balance.toLocaleString();
+            document.getElementById('accName').value = '';
+            document.getElementById('accSum').value = '';
+        }
+    }
+</script>
+</body>
+</html>
