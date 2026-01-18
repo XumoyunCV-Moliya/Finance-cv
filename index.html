@@ -1,9 +1,9 @@
-  <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="uz">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Isroilov Xumoyun | Moliya Portfoliosi</title>
+    <title>Isroilov Xumoyun | CV & Moliya Portfoliosi</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -11,136 +11,80 @@
             --secondary: #3b82f6;
             --accent: #fbbf24;
             --success: #10b981;
-            --danger: #ef4444;
             --bg: #f8fafc;
+            --card: #ffffff;
             --text: #1e293b;
-            --card-bg: #ffffff;
         }
 
-        .dark-theme {
-            --bg: #0f172a;
-            --primary: #f8fafc;
-            --secondary: #60a5fa;
-            --text: #cbd5e1;
-            --card-bg: #1e293b;
-        }
+        body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); margin: 0; padding: 0; line-height: 1.6; }
+        .container { max-width: 800px; margin: 0 auto; padding: 20px; }
 
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--bg);
-            margin: 0;
-            padding: 0;
-            color: var(--text);
-            transition: 0.3s;
-        }
-
-        .container { max-width: 850px; margin: 0 auto; padding: 20px; }
-
+        /* HEADER */
         header {
-            background: linear-gradient(135deg, #0f172a 0%, #1e40af 100%);
+            background: linear-gradient(135deg, var(--primary) 0%, #1e40af 100%);
             color: white;
-            padding: 40px 30px;
+            padding: 40px 20px;
             border-radius: 20px;
             text-align: center;
-            position: relative;
             margin-bottom: 25px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
         }
+        header h1 { margin: 0; font-size: 2.2rem; letter-spacing: 1px; }
+        .tagline { color: var(--accent); font-weight: 600; margin: 10px 0; font-size: 1.1rem; }
 
-        .theme-toggle {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            background: rgba(255,255,255,0.1);
-            border: 1px solid var(--accent);
-            color: var(--accent);
-            padding: 5px 15px;
-            border-radius: 20px;
-            cursor: pointer;
-        }
-
+        /* SECTION UNIVERSAL */
         section {
-            background: var(--card-bg);
+            background: var(--card);
             padding: 25px;
             border-radius: 15px;
+            margin-bottom: 20px;
             box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-            margin-bottom: 20px;
         }
+        h2 { color: var(--primary); border-left: 5px solid var(--secondary); padding-left: 15px; font-size: 1.3rem; margin-top: 0; margin-bottom: 20px; }
 
-        h2 { color: var(--secondary); border-left: 5px solid var(--secondary); padding-left: 15px; font-size: 1.3rem; margin-top: 0; }
+        /* CV ELEMENTS */
+        .cv-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        .cv-item { background: #f1f5f9; padding: 15px; border-radius: 10px; }
+        .badge { background: #e0f2fe; color: #0369a1; padding: 5px 12px; border-radius: 20px; font-size: 0.85rem; font-weight: 600; display: inline-block; margin: 3px; }
 
-        .currency-bar {
-            background: var(--primary);
-            color: white;
-            padding: 15px;
-            border-radius: 15px;
-            display: flex;
-            justify-content: space-around;
-            margin-bottom: 20px;
-            font-weight: bold;
-        }
+        /* FINANCE TOOLS */
+        .currency-row { display: flex; justify-content: space-around; background: var(--primary); color: white; padding: 15px; border-radius: 15px; margin-bottom: 20px; font-weight: bold; }
+        .input-box { width: 100%; padding: 12px; margin: 8px 0; border: 1px solid #cbd5e1; border-radius: 8px; box-sizing: border-box; }
+        .calc-btn { width: 100%; background: var(--secondary); color: white; border: none; padding: 14px; border-radius: 8px; font-weight: bold; cursor: pointer; transition: 0.3s; }
+        .calc-btn:hover { background: #2563eb; }
 
-        .input-group { margin-bottom: 15px; }
-        input, select {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #cbd5e1;
-            border-radius: 8px;
-            background: var(--card-bg);
-            color: var(--text);
-            box-sizing: border-box;
-        }
+        .history-list { max-height: 150px; overflow-y: auto; padding: 0; list-style: none; margin-top: 10px; border-top: 1px solid #eee; }
+        .history-item { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid #f1f5f9; font-size: 0.9rem; }
 
-        .btn {
-            width: 100%;
-            background: var(--secondary);
-            color: white;
-            border: none;
-            padding: 14px;
-            border-radius: 8px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-
-        .analysis-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-            gap: 15px;
-        }
-
-        .analysis-card {
-            background: rgba(59, 130, 246, 0.1);
-            padding: 15px;
-            border-radius: 10px;
-            text-align: center;
-        }
-
-        .history-list {
-            max-height: 150px;
-            overflow-y: auto;
-            margin-top: 15px;
-            padding: 0;
-            list-style: none;
-        }
-
-        .history-item {
-            display: flex;
-            justify-content: space-between;
-            padding: 8px 0;
-            border-bottom: 1px solid #e2e8f0;
-        }
+        @media (max-width: 600px) { .cv-grid { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
 
 <div class="container">
     <header>
-        <button class="theme-toggle" onclick="toggleTheme()">🌙 Rejim</button>
         <h1>ISROILOV XUMOYUN</h1>
-        <p>Moliya va Bank Ishi Mutaxassisi | Qarshi DTU</p>
-        <p>📧 humoyunisroilov10@gmail.com</p>
+        <div class="tagline">Moliya va Bank Ishi Mutaxassisi</div>
+        <p>📍 Qarshi shahri | 📧 humoyunisroilov10@gmail.com</p>
+        <a href="https://t.me/isroiloff_10" style="color: white; text-decoration: none; border: 1px solid var(--accent); padding: 5px 15px; border-radius: 20px; font-size: 0.9rem;">Telegram: @isroiloff_10</a>
     </header>
 
-    <div class="currency-bar">
+    <section>
+        <h2>🎓 Ma'lumot va Tajriba</h2>
+        <div class="cv-item" style="margin-bottom: 15px;">
+            <strong>Qarshi Davlat Texnika Universiteti</strong>
+            <p style="margin: 5px 0;">Moliya va bank ishi yo'nalishi talabasi</p>
+        </div>
+        <div>
+            <span class="badge">1C Buxgalteriya 8.3</span>
+            <span class="badge">MS Excel Analitika</span>
+            <span class="badge">Soliq.uz & Didox</span>
+            <span class="badge">Bank-Klient</span>
+            <span class="badge">Moliyaviy Tahlil</span>
+        </div>
+    </section>
+
+    <div class="currency-row">
         <div>USD: <span id="usd" style="color:var(--accent)">...</span></div>
         <div>EUR: <span id="eur" style="color:var(--accent)">...</span></div>
         <div>RUB: <span id="rub" style="color:var(--accent)">...</span></div>
@@ -148,71 +92,57 @@
 
     <section>
         <h2>📊 Shaxsiy Moliya Hisoblagichi</h2>
-        <div style="display: grid; grid-template-columns: 2fr 1fr 1fr auto; gap: 10px;">
-            <input type="text" id="accName" placeholder="Nima uchun?">
-            <input type="number" id="accSum" placeholder="Summa">
-            <select id="accType">
-                <option value="plus">+</option>
-                <option value="minus">-</option>
-            </select>
-            <button class="btn" onclick="addTransaction()" style="width: auto;">➕</button>
+        <div style="display: grid; grid-template-columns: 2fr 1fr auto; gap: 8px; margin-bottom: 10px;">
+            <input type="text" id="accName" class="input-box" style="margin:0" placeholder="Nima uchun?">
+            <input type="number" id="accSum" class="input-box" style="margin:0" placeholder="Summa">
+            <button onclick="addTransaction()" class="calc-btn" style="width: 50px; padding:0;">➕</button>
         </div>
+        <select id="accType" class="input-box" style="margin-top:0">
+            <option value="plus">Daromad (+)</option>
+            <option value="minus">Xarajat (-)</option>
+        </select>
         <ul id="accHistory" class="history-list"></ul>
-        <div style="text-align: right; margin-top: 10px; font-weight: bold;">
-            Balans: <span id="balanceText">0</span> so'm
+        <div style="text-align: right; font-weight: bold; margin-top: 10px;">
+            Balans: <span id="balanceText" style="color: var(--success);">0</span> so'm
         </div>
     </section>
 
     <section>
         <h2>🧮 Kredit Kalkulyatori</h2>
-        <div class="input-group"><input type="number" id="kSum" placeholder="Kredit summasi"></div>
-        <div class="input-group"><input type="number" id="kPercent" placeholder="Yillik foiz (%)"></div>
-        <div class="input-group"><input type="number" id="kMonth" placeholder="Muddati (oyda)"></div>
-        <button class="btn" onclick="calcKredit()">HISOBLASH</button>
-        <div id="kResult" style="margin-top:15px; display:none; color:var(--success); font-weight:bold;">
-            Oylik to'lov: <span id="kPayment">0</span> so'm
+        <input type="number" id="kSum" class="input-box" placeholder="Kredit summasi (so'm)">
+        <input type="number" id="kPerc" class="input-box" placeholder="Yillik foiz (%)">
+        <input type="number" id="kMonth" class="input-box" placeholder="Muddati (oyda)">
+        <button onclick="calcKredit()" class="calc-btn">HISOBLASH</button>
+        <div id="kResult" style="margin-top:15px; display:none; background: #ecfdf5; padding: 15px; border-radius: 10px; text-align: center;">
+            Oylik to'lov: <b id="kPayment" style="color: var(--success); font-size: 1.2rem;">0</b> so'm
         </div>
     </section>
 
-    <section>
-        <h2>📈 Moliyaviy Tahlil</h2>
-        <div class="analysis-grid">
-            <div class="analysis-card"><small>Soliq optimizatsiyasi</small><br><b style="color:var(--success)">-10%</b></div>
-            <div class="analysis-card"><small>Xarajat nazorati</small><br><b style="color:var(--success)">100%</b></div>
-            <div class="analysis-card"><small>Debitorlik tahlili</small><br><b style="color:var(--secondary)">Active</b></div>
-        </div>
-    </section>
-
-    <section style="text-align: center;">
-        <h2>📩 Aloqa</h2>
-        <p>Ish takliflari va hamkorlik uchun:</p>
-        <a href="https://t.me/isroiloff_10" class="btn" style="text-decoration:none; display:inline-block; width:auto; padding: 10px 40px;">Telegram: @isroiloff_10</a>
-    </section>
+    <footer style="text-align: center; color: #94a3b8; font-size: 0.8rem; padding: 20px;">
+        © 2024 Isroilov Xumoyun | Qarshi DTU | Moliya Portfoliosi
+    </footer>
 </div>
 
 <script>
-    // Theme Toggle
-    function toggleTheme() { document.body.classList.toggle('dark-theme'); }
-
     // Currency API
-    async function updateRates() {
+    async function getRates() {
         try {
             const r = await fetch('https://nbu.uz/exchange-rates/json/');
             const d = await r.json();
             document.getElementById('usd').innerText = d.find(x => x.code === 'USD').nbu_buy_price;
             document.getElementById('eur').innerText = d.find(x => x.code === 'EUR').nbu_buy_price;
             document.getElementById('rub').innerText = d.find(x => x.code === 'RUB').nbu_buy_price;
-        } catch(e) {}
+        } catch(e) { console.log("Kurs xatosi"); }
     }
-    updateRates();
+    getRates();
 
-    // Kredit Calculator
+    // Kredit Calc
     function calcKredit() {
         let s = document.getElementById('kSum').value;
-        let f = document.getElementById('kPercent').value / 100 / 12;
+        let f = document.getElementById('kPerc').value / 100 / 12;
         let m = document.getElementById('kMonth').value;
-        let res = (s * f * Math.pow(1+f, m)) / (Math.pow(1+f, m) - 1);
-        if(!isNaN(res)) {
+        if(s && f && m) {
+            let res = (s * f * Math.pow(1+f, m)) / (Math.pow(1+f, m) - 1);
             document.getElementById('kPayment').innerText = Math.round(res).toLocaleString();
             document.getElementById('kResult').style.display = 'block';
         }
@@ -229,7 +159,7 @@
             balance += current;
             const li = document.createElement('li');
             li.className = 'history-item';
-            li.innerHTML = `<span>${name}</span> <span style="color:${type === 'plus' ? 'var(--success)' : 'var(--danger)'}">${current.toLocaleString()}</span>`;
+            li.innerHTML = `<span>${name}</span> <span style="color:${type === 'plus' ? 'var(--success)' : '#ef4444'}">${current.toLocaleString()}</span>`;
             document.getElementById('accHistory').prepend(li);
             document.getElementById('balanceText').innerText = balance.toLocaleString();
             document.getElementById('accName').value = '';
@@ -237,5 +167,6 @@
         }
     }
 </script>
+
 </body>
 </html>
